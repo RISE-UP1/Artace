@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ارتقي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { } } };
+  </script>
+  <style>
+    :root{--glass: rgba(255,255,255,.08)}
+    html,body{height:100%}
+    body{margin:0;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;background-image:linear-gradient(to bottom right,#eef2ff,#e0e7ff);}
+    .dark body,.dark\:bg {background-image:linear-gradient(to bottom right,#0b1220,#111827)}
+    .glassmorphism{background:#ffffff26;border:1px solid #ffffff33;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+    .glassmorphism-dark{background:#00000040;border:1px solid #ffffff26;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+    .tooltip{display:inline-block;position:relative}
+    .tooltip .tooltip-text{visibility:hidden;color:#fff;text-align:center;z-index:50;opacity:0;white-space:nowrap;background-color:#000000e6;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600;transition:opacity .2s,visibility .2s;position:absolute;top:125%;left:50%;transform:translateX(-50%)}
+    .tooltip .tooltip-text:after{content:"";border:5px solid transparent;border-bottom-color:#000000e6;position:absolute;bottom:100%;left:50%;transform:translateX(-50%)}
+    .tooltip:hover .tooltip-text{visibility:visible;opacity:1}
+    @keyframes panSlow{0%{transform:translate(0,0) scale(1.06)}50%{transform:translate(-3%,-2%) scale(1.06)}100%{transform:translate(0,0) scale(1.06)}}
+    /* Ensure layering over video */
+    #home{position:relative}
+    #home .hero-video{z-index:0;animation:panSlow 26s ease-in-out infinite;will-change:transform}
+    #home .overlay{z-index:10}
+    #home .content{z-index:30}
+    .signature{font-family:'Great Vibes',cursive;letter-spacing:.5px}
+    /* 3D helpers for card */
+    .perspective-1000{perspective:1000px}
+    .preserve-3d{transform-style:preserve-3d}
+    .card-3d{transform:translateZ(0);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;will-change:transform}
+    .card-3d:hover{transform:translateZ(36px) scale(1.06);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  </style>
+</head>
+<body class="min-h-screen">
+  <nav class="fixed top-0 left-0 right-0 z-50 rounded-b-3xl max-w-7xl mx-auto mt-2 sm:mt-3 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+      <div class="flex items-center justify-between h-16 sm:h-14">
+        <!-- Brand -->
+        <div class="flex-shrink-0 md:w-1/4 flex justify-start">
+          <div class="shrink-0 glassmorphism dark:glassmorphism-dark border border-white/20 dark:border-gray-600 rounded-full px-4 py-2 backdrop-blur-sm">
+            <a href="#" class="logo-animation flex items-center space-x-2 select-none">
+              <span class="text-2xl font-extrabold text-gray-950 dark:text-white">ارتقي</span>
+            </a>
+          </div>
+        </div>
+        <!-- Center nav -->
+        <div class="hidden md:flex md:w-1/2 justify-between lg:justify-evenly items-center glassmorphism dark:glassmorphism-dark rounded-full px-4 lg:px-6 py-2 backdrop-blur-sm border border-white/20 dark:border-gray-600">
+          <div class="tooltip nav-icon">
+            <a href="#home" class="nav-icon p-2 flex items-center transition-all duration-300 hover:text-emerald-400 hover:scale-110 rounded-full hover:bg-white/30 dark:hover:bg-black/30 border border-transparent hover:border-emerald-500/30">
+              <svg class="w-6 h-6 text-green-400 transition-all duration-300 hover:text-emerald-700 dark:hover:text-emerald-400 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            </a>
+            <span class="tooltip-text">الرئيسية</span>
+          </div>
+          <div class="tooltip nav-icon">
+            <a href="#courses" class="nav-icon p-2 flex items-center transition-all duration-300 hover:text-emerald-400 hover:scale-110 rounded-full hover:bg-white/30 dark:hover:bg-black/30 border border-transparent hover:border-emerald-500/30">
+              <svg class="w-6 h-6 text-green-400 transition-all duration-300 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </a>
+            <span class="tooltip-text">تقدري تتعلمي معانا</span>
+          </div>
+          <div class="tooltip nav-icon">
+            <a href="#testimonials" class="nav-icon p-2 flex items-center transition-all duration-300 hover:text-emerald-400 hover:scale-110 rounded-full hover:bg-white/30 dark:hover:bg-black/30 border border-transparent hover:border-emerald-500/30">
+              <svg class="w-6 h-6 text-green-400 transition-all duration-300 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </a>
+            <span class="tooltip-text">آراء الأمهات</span>
+          </div>
+          <div class="tooltip nav-icon">
+            <a href="#ebooks" class="nav-icon p-2 flex items-center transition-all duration-300 hover:text-emerald-400 hover:scale-110 rounded-full hover:bg-white/30 dark:hover:bg-black/30 border border-transparent hover:border-emerald-500/30">
+              <svg class="w-6 h-6 text-green-400 transition-all duration-300 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            </a>
+            <span class="tooltip-text">الكتب الإلكترونية</span>
+          </div>
+          <div class="tooltip nav-icon">
+            <a href="#articles" class="nav-icon p-2 flex items-center transition-all duration-300 hover:text-emerald-400 hover:scale-110 rounded-full hover:bg-white/30 dark:hover:bg-black/30 border border-transparent hover:border-emerald-500/30">
+              <!-- brain icon -->
+              <svg class="w-6 h-6 text-green-400 transition-all duration-300 dark:text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 18V5"/>
+                <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/>
+                <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/>
+                <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/>
+                <path d="M18 18a4 4 0 0 0 2-7.464"/>
+                <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/>
+                <path d="M6 18a4 4 0 0 1-2-7.464"/>
+                <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/>
+              </svg>
+            </a>
+            <span class="tooltip-text">مقالات</span>
+          </div>
+          <div class="tooltip nav-icon">
+            <a href="#contact-us" class="nav-icon p-2 flex items-center transition-all duration-300 hover:text-emerald-400 hover:scale-110 rounded-full hover:bg-white/30 dark:hover:bg-black/30 border border-transparent hover:border-emerald-500/30">
+              <!-- mail icon -->
+              <svg class="w-6 h-6 text-green-400 transition-all duration-300 dark:text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+              </svg>
+            </a>
+            <span class="tooltip-text">تواصل معنا</span>
+          </div>
+          <div class="tooltip nav-icon">
+            <button id="darkToggle" class="flex items-center justify-center p-2 rounded-full hover:bg-white/30 dark:hover:bg-black/30 border border-transparent hover:border-emerald-500/30" aria-label="Toggle dark mode">
+              <svg id="sunIcon" class="w-6 h-6 text-yellow-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              <svg id="moonIcon" class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            </button>
+            <span class="tooltip-text">Dark Mode</span>
+          </div>
+        </div>
+        <!-- Right CTA (desktop) -->
+        <div class="hidden md:flex md:w-1/4 justify-end items-center">
+          <a href="#contact-us" class="text-emerald-500 dark:text-white px-5 lg:px-6 py-2.5 lg:py-3 rounded-full font-medium text-sm lg:text-base transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border-2 border-emerald-400 hover:border-emerald-300 glassmorphism dark:glassmorphism-dark">تواصل معنا</a>
+        </div>
+        <!-- Right controls (mobile) -->
+        <div class="md:hidden flex items-center gap-2">
+          <button id="darkToggleSm" class="p-2 rounded-full hover:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-transparent hover:border-emerald-500/50" aria-label="Toggle dark mode">
+            <svg id="sunIconSm" class="w-5 h-5 text-yellow-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg id="moonIconSm" class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+          <button id="burger" class="relative p-2 rounded-full transition-all duration-300 border-2 hover:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border-transparent hover:border-emerald-500/50" aria-expanded="false" aria-label="Toggle menu">
+            <div class="w-5 h-5 flex flex-col justify-center items-center">
+              <span id="b1" class="block h-0.5 w-5 bg-emerald-500 dark:bg-emerald-400 transition-all duration-300 -translate-y-1"></span>
+              <span id="b2" class="block h-0.5 w-5 bg-emerald-500 dark:bg-emerald-400 transition-all duration-300 opacity-100"></span>
+              <span id="b3" class="block h-0.5 w-5 bg-emerald-500 dark:bg-emerald-400 transition-all duration-300 translate-y-1"></span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile dropdown -->
+      <div id="mobileMenu" class="md:hidden overflow-hidden transition-all duration-500 ease-in-out max-h-0 opacity-0">
+        <div class="glassmorphism dark:glassmorphism-dark mt-4 mx-2 rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-gray-600 backdrop-blur-xl">
+          <div class="flex flex-col space-y-2">
+            <a href="#home" class="flex items-center gap-3 p-3 rounded-xl hover:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-transparent hover:border-emerald-500/50 group">
+              <svg class="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              <span class="text-gray-700 dark:text-white font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400">الرئيسية</span>
+            </a>
+            <a href="#courses" class="flex items-center gap-3 p-3 rounded-xl hover:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-transparent hover:border-emerald-500/50 group">
+              <svg class="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-gray-700 dark:text-gray-200 font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400">تقدري تتعلمي معانا</span>
+            </a>
+            <a href="#testimonials" class="flex items-center gap-3 p-3 rounded-xl hover:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-transparent hover:border-emerald-500/50 group">
+              <svg class="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              <span class="text-gray-700 dark:text-gray-200 font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400">آراء الأمهات</span>
+            </a>
+            <a href="#ebooks" class="flex items-center gap-3 p-3 rounded-xl hover:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-transparent hover:border-emerald-500/50 group">
+              <svg class="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              <span class="text-gray-700 dark:text-gray-200 font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400">الكتب الإلكترونية</span>
+            </a>
+            <a href="#articles" class="flex items-center gap-3 p-3 rounded-xl hover:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-transparent hover:border-emerald-500/50 group">
+              <svg class="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 18V5"/>
+                <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/>
+                <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/>
+                <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/>
+                <path d="M18 18a4 4 0 0 0 2-7.464"/>
+                <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/>
+                <path d="M6 18a4 4 0 0 1-2-7.464"/>
+                <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/>
+              </svg>
+              <span class="text-gray-700 dark:text-gray-200 font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400">مقالات</span>
+            </a>
+            <a href="#contact-us" class="flex items-center gap-3 p-3 rounded-xl hover:bg-emerald-500/20 dark:hover:bg-emerald-500/30 border border-transparent hover:border-emerald-500/50 group">
+              <svg class="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+              <span class="text-gray-700 dark:text-gray-200 font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-400">تواصل معنا</span>
+            </a>
+            <a href="#contact-us" class="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 text-center shadow-lg hover:shadow-xl hover:scale-105 mt-2">تواصل معنا</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- First section with background video (v2) -->
+  <section id="home" class="relative pt-24 sm:pt-28 min-h-[240vh] sm:min-h-[260vh] md:min-h-[300vh] lg:min-h-[320vh] overflow-hidden">
+    <img class="absolute inset-0 w-full h-full object-cover object-center hero-video" src="./undefined.jfif" alt="" />
+    <div class="absolute inset-0 overlay bg-black/35 sm:bg-black/30 md:bg-black/25"></div>
+    <div class="relative content max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 min-h-[inherit]">
+      <div class="w-full h-full flex items-center justify-center">
+        <div class="flex flex-col items-center gap-6 w-full max-w-3xl">
+          <div class="perspective-1000 w-full">
+            <div class="group card-3d rounded-3xl p-6 sm:p-8 md:p-10 transform-gpu hover:scale-[1.04] backdrop-blur-xl shadow-md border bg-[rgba(124,58,237,0.18)] border-[rgba(168,85,247,0.35)] dark:bg-[rgba(88,28,135,0.22)] dark:border-[rgba(192,132,252,0.35)] transition-colors duration-300 ease-out hover:bg-[rgba(124,58,237,0.28)] hover:border-[rgba(168,85,247,0.5)] dark:hover:bg-[rgba(88,28,135,0.32)] dark:hover:border-[rgba(192,132,252,0.55)]">
+              <img src="./busy women.jfif" alt="Busy woman" class="w-28 h-28 sm:w-32 sm:h-32 object-cover rounded-full mx-auto mb-5 ring-4 ring-white/40 dark:ring-white/20 shadow-xl transition-transform duration-500 ease-out group-hover:scale-110"/>
+              <p dir="rtl" class="text-right text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg md:text-xl font-semibold">
+                أنا اسمي أسماء، أم لتوأم تجاوزا الخامسة عشرة، ودا لوحده يعلّمك الكثير عن التنظيم، الصبر، وفن إدارة الحياة! وخلف دوري كأم، عشت التحدي حتى صار حكمة، والإرهاق حتى صار إبداعًا، والضعف حتى صار قوة
+              </p>
+            </div>
+          </div>
+          <div class="perspective-1000 w-full">
+            <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-3xl p-6 sm:p-8 md:p-10 transform-gpu hover:scale-[1.04] backdrop-blur-xl shadow-md transition-colors duration-300 ease-out hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+              <img src="./download (3).jfif" alt="Busy woman" class="w-28 h-28 sm:w-32 sm:h-32 object-cover rounded-full mx-auto mb-5 ring-4 ring-white/40 dark:ring-white/20 shadow-xl transition-transform duration-500 ease-out group-hover:scale-110"/>
+              <p dir="rtl" class="text-right text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg md:text-xl font-semibold">
+                إلى جانب هذه التجربة الثمينة، أنا أخصائية بصريات شغوفة بمساعدة الآخرين على رؤية العالم بوضوح أكبر، ليس فقط بالعين المجرّدة، بل برؤية أعمق وأشمل للحياة. رحلتي لم تتوقف عند هذا الحد؛ فقد توسعت معارفي وخبراتي بحصولي على شهادات في إدارة الأعمال، التنمية البشرية، والتغذية.
+              </p>
+            </div>
+          </div>
+          <div class="perspective-1000 w-full">
+            <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-3xl p-6 sm:p-8 md:p-10 transform-gpu hover:scale-[1.04] backdrop-blur-xl shadow-md transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+              <img src="./download (4).jfif" alt="Busy woman" class="w-28 h-28 sm:w-32 sm:h-32 object-cover rounded-full mx-auto mb-5 ring-4 ring-white/40 dark:ring-white/20 shadow-xl object-[50%_20%] transition-transform duration-500 ease-out group-hover:scale-110" style="object-position:50% 20%"/>
+              <p dir="rtl" class="text-right text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg md:text-xl font-semibold">
+                سواء كنتِ تبحثين عن التوازن في حياتك أو تطوير مهاراتك أو بناء ثقتك بنفسك، هذه التخصصات المتنوعة صقلت لديّ القدرة على فهم التحديات التي تواجه المرأة في حياتها اليومية، سواء على المستوى الشخصي أو المهني أو حتى الصحي. من هنا قررت أن أشاركك كل ما تعلمته من أجلك.
+              </p>
+            </div>
+          </div>
+          <div class="perspective-1000 w-full">
+            <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-3xl p-6 sm:p-8 md:p-10 transform-gpu hover:scale-[1.04] backdrop-blur-xl shadow-md transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+              <img src="./Arab woman Photos - Download Free High-Quality Pictures _ Freepik.jfif" alt="Arab woman" class="w-28 h-28 sm:w-32 sm:h-32 object-cover rounded-full mx-auto mb-5 ring-4 ring-white/40 dark:ring-white/20 shadow-xl transition-transform duration-500 ease-out group-hover:scale-110"/>
+              <p dir="rtl" class="text-right text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg md:text-xl font-semibold">
+                هدفي هو أن أكون مدربتك ومحاضرتك التي تمكنك من اكتشاف إمكانياتك الكامنة وتحقيق أهدافك والوصول إلى أفضل نسخة من نفسك. أنا هنا لأدعمك في كل خطوة. انضمي إلينا في هذه الرحلة الملهمة نحو النجاح والتطور.
+              </p>
+            </div>
+          </div>
+          <!-- YouTube CTA Section -->
+          <div class="mt-10 sm:mt-12 w-full flex flex-col items-center text-center">
+            <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-3xl px-5 py-3 sm:px-6 sm:py-3.5 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+              <p dir="rtl" class="text-gray-900/90 dark:text-white/90 text-base sm:text-lg md:text-xl font-semibold">
+                لو عايز تعرفي أكتر للعناية بتوأمك زوري قناتي على اليوتيوب
+              </p>
+            </div>
+            <a href="https://www.youtube.com/@Elmoms-pro" target="_blank" rel="noopener noreferrer" class="group mt-4">
+              <span class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-full glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 backdrop-blur-xl shadow-lg transition-transform duration-300 ease-out group-hover:scale-110 overflow-hidden">
+                <img src="https://unavatar.io/youtube/Elmoms-pro" alt="YouTube channel avatar" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 48 48\'%3E%3Crect width=\'48\' height=\'48\' rx=\'12\' fill=\'%23FF0000\'/%3E%3Cpath d=\'M20 32V16l14 8-14 8z\' fill=\'%23fff\'/%3E%3C/svg%3E'" />
+              </span>
+            </a>
+            <!-- Courses Section (moved here) -->
+            <div id="courses" class="mt-14 sm:mt-16 w-full flex flex-col items-center">
+              <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-3xl px-6 py-3 sm:px-8 sm:py-4 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04]">
+                <h2 dir="rtl" class="text-center text-gray-900/90 dark:text-white/90 text-lg sm:text-xl md:text-2xl font-extrabold tracking-wide">تقدري تتعلمي معانا</h2>
+              </div>
+              <div class="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full max-w-6xl">
+                <div class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 sm:p-7 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-center">
+                      <h3 dir="rtl" class="text-gray-900/90 dark:text-white/90 text-lg sm:text-xl font-bold">التغذية</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 sm:p-7 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-center">
+                      <h3 dir="rtl" class="text-gray-900/90 dark:text-white/90 text-lg sm:text-xl font-bold">تطوير الذات</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 sm:p-7 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-center">
+                      <h3 dir="rtl" class="text-gray-900/90 dark:text-white/90 text-lg sm:text-xl font-bold">إدارة أعمال</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonials Section -->
+            <div id="testimonials" class="mt-14 sm:mt-16 w-full flex flex-col items-center">
+              <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-3xl px-6 py-3 sm:px-8 sm:py-4 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04]">
+                <h2 dir="rtl" class="text-center text-gray-900/90 dark:text-white/90 text-lg sm:text-xl md:text-2xl font-extrabold tracking-wide">آراء الأمهات</h2>
+              </div>
+              <div class="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 w-full max-w-6xl">
+                <!-- T1 -->
+                <div class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="flex items-center gap-4 mb-3" dir="rtl">
+                      <img src="busy women.jfif" alt="أم" class="w-12 h-12 rounded-full ring-2 ring-white/40 dark:ring-white/20 object-cover"/>
+                      <div>
+                        <p class="text-gray-900/90 dark:text-white/90 font-extrabold">أم يوسف وتالى</p>
+                        <p class="text-gray-700/80 dark:text-white/60 text-sm">توأم بعمر 8 شهور</p>
+                      </div>
+                    </div>
+                    <p class="text-right text-gray-900/90 dark:text-white/90 leading-7 sm:leading-8 text-base">
+                      الروتين المقترح ساعدني أوحّد مواعيد النوم والرضعات. الضغط قلّ ووقتي بقى منظم.
+                    </p>
+                  </div>
+                </div>
+                <!-- T2 -->
+                <div class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="flex items-center gap-4 mb-3" dir="rtl">
+                      <img src="busy women.jfif" alt="أم" class="w-12 h-12 rounded-full ring-2 ring-white/40 dark:ring-white/20 object-cover"/>
+                      <div>
+                        <p class="text-gray-900/90 dark:text-white/90 font-extrabold">أم سيف وليان</p>
+                        <p class="text-gray-700/80 dark:text-white/60 text-sm">توأم حديث الولادة</p>
+                      </div>
+                    </div>
+                    <p class="text-right text-gray-900/90 dark:text-white/90 leading-7 sm:leading-8 text-base">
+                      أفكار الوجبات السريعة أنقذتني وقت الزن. تجهيز بسيط أسبوعيًا فرّق معانا جدًا.
+                    </p>
+                  </div>
+                </div>
+                <!-- T3 -->
+                <div class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="flex items-center gap-4 mb-3" dir="rtl">
+                      <img src="busy women.jfif" alt="أم" class="w-12 h-12 rounded-full ring-2 ring-white/40 dark:ring-white/20 object-cover"/>
+                      <div>
+                        <p class="text-gray-900/90 dark:text-white/90 font-extrabold">أم آدم وآية</p>
+                        <p class="text-gray-700/80 dark:text-white/60 text-sm">سنة ونصف</p>
+                      </div>
+                    </div>
+                    <p class="text-right text-gray-900/90 dark:text-white/90 leading-7 sm:leading-8 text-base">
+                      نصائح النوم بالتدريج كانت واقعية. مع الاتساق، الاستيقاظات قلت خلال أسبوعين.
+                    </p>
+                  </div>
+                </div>
+                <!-- T4 -->
+                <div class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="flex items-center gap-4 mb-3" dir="rtl">
+                      <img src="busy women.jfif" alt="أم" class="w-12 h-12 rounded-full ring-2 ring-white/40 dark:ring-white/20 object-cover"/>
+                      <div>
+                        <p class="text-gray-900/90 dark:text-white/90 font-extrabold">أم تيم وتالا</p>
+                        <p class="text-gray-700/80 dark:text-white/60 text-sm">3 سنوات</p>
+                      </div>
+                    </div>
+                    <p class="text-right text-gray-900/90 dark:text-white/90 leading-7 sm:leading-8 text-base">
+                      تعلمت أقول "لا" للزائد عن طاقتي. التنظيم البسيط رجّعلي هدوئي.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- E-books Section -->
+            <div id="ebooks" class="mt-14 sm:mt-16 w-full flex flex-col items-center">
+              <!-- Heading -->
+              <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-3xl px-6 py-3 sm:px-8 sm:py-4 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04]">
+                <h2 dir="rtl" class="text-center text-gray-900/90 dark:text-white/90 text-lg sm:text-xl md:text-2xl font-extrabold tracking-wide">الكتب الإلكترونية</h2>
+              </div>
+              <!-- Books grid -->
+              <div class="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 w-full max-w-6xl">
+                <!-- Book 1 -->
+                <a href="https://g.co/gemini/share/f0e4768f7d2b" target="_blank" rel="noopener noreferrer" class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-5 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-center">
+                      <p dir="rtl" class="text-blue-600 dark:text-blue-300 font-bold mb-2">اضغط هنا</p>
+                      <p class="text-2xl leading-none">⬇️</p>
+                      <img src="https://img.freepik.com/premium-photo/mother-baby_861161-6138.jpg" alt="غلاف الكتاب" class="mt-4 w-[200px] h-[280px] max-w-full mx-auto rounded-xl object-cover"/>
+                    </div>
+                  </div>
+                </a>
+                <!-- Book 2 -->
+                <a href="https://g.co/gemini/share/b0c2b4dc46f8" target="_blank" rel="noopener noreferrer" class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-5 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-center">
+                      <p dir="rtl" class="text-blue-600 dark:text-blue-300 font-bold mb-2">اضغط هنا</p>
+                      <p class="text-2xl leading-none">⬇️</p>
+                      <img src="https://img.freepik.com/premium-photo/hijab-logo_553012-23442.jpg?w=2000" alt="غلاف الكتاب" class="mt-4 w-[200px] h-[280px] max-w-full mx-auto rounded-xl object-cover"/>
+                    </div>
+                  </div>
+                </a>
+                <!-- Book 3 -->
+                <a href="https://g.co/gemini/share/868b4198d712" target="_blank" rel="noopener noreferrer" class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-5 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-center">
+                      <p dir="rtl" class="text-blue-600 dark:text-blue-300 font-bold mb-2">اضغط هنا</p>
+                      <p class="text-2xl leading-none">⬇️</p>
+                      <img src="https://img.freepik.com/premium-photo/sahoor-preparation-asian-woman-muslim-cooking-food-early-morning_1009981-194.jpg" alt="غلاف الكتاب" class="mt-4 w-[200px] h-[280px] max-w-full mx-auto rounded-xl object-cover"/>
+                    </div>
+                  </div>
+                </a>
+                <!-- Book 4 -->
+                <a href="https://g.co/gemini/share/83c8f02f0310" target="_blank" rel="noopener noreferrer" class="perspective-1000">
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-5 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-center">
+                      <p dir="rtl" class="text-blue-600 dark:text-blue-300 font-bold mb-2">اضغط هنا</p>
+                      <p class="text-2xl leading-none">⬇️</p>
+                      <img src="https://i.pinimg.com/736x/6b/44/8d/6b448df787b7f4453c3ce90cb45d9146.jpg" alt="غلاف الكتاب" class="mt-4 w-[200px] h-[280px] max-w-full mx-auto rounded-xl object-cover"/>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div id="articles" class="mt-14 sm:mt-16 w-full flex flex-col items-center">
+              <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-3xl px-6 py-3 sm:px-8 sm:py-4 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04]">
+                <h2 dir="rtl" class="text-center text-gray-900/90 dark:text-white/90 text-lg sm:text-xl md:text-2xl font-extrabold tracking-wide">مقالات</h2>
+              </div>
+              <div class="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full max-w-6xl">
+                <div class="perspective-1000" data-article>
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 sm:p-7 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-right" dir="rtl">
+                      <h3 class="text-gray-900/90 dark:text-white/90 text-lg sm:text-xl font-extrabold mb-3">روتين يومي عملي لرعاية التوأم</h3>
+                      <p class="text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg line-clamp-3 excerpt">
+                        في الشهور الأولى قد يبدو اليوم مزدحمًا ومربكًا مع طفلين. هذا الروتين يقسّم اليوم إلى فترات تغذية ونوم ولعب قصيرة، مع سجل بسيط للمتابعة حتى لا تفوتك أي ملاحظة، ويقلّ التوتر ويزيد الإحساس بالسيطرة.
+                      </p>
+                      <p class="text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg mt-3 hidden full">
+                        اجعلي الرضعات كل 3 ساعات مع فارق دقائق بسيط بين الطفلين، تليها 20–30 دقيقة تهدئة ولعب حسي خفيف ثم قيلولة متزامنة قدر الإمكان. سجّلي الرضعات والحفاض والنوم في دفتر أو تطبيق لملاحظة الأنماط سريعًا. سلة أدوات ثابتة قرب كل ركن توفر وقت التنقل وتدعم الاتساق اليومي.
+                      </p>
+                      <div class="mt-4 flex gap-3">
+                        <button class="read-more px-4 py-2 rounded-xl font-semibold text-white transition-colors glassmorphism dark:glassmorphism-dark border backdrop-blur-xl bg-[rgba(124,58,237,0.82)] border-[rgba(168,85,247,0.6)] hover:bg-[rgba(124,58,237,0.9)] hover:border-[rgba(168,85,247,0.75)] dark:bg-[rgba(88,28,135,0.88)] dark:border-[rgba(192,132,252,0.6)] dark:hover:bg-[rgba(88,28,135,0.95)] dark:hover:border-[rgba(192,132,252,0.75)]">قراءة المزيد</button>
+                        <button class="read-less px-4 py-2 rounded-xl font-semibold text-white transition-colors glassmorphism dark:glassmorphism-dark border backdrop-blur-xl bg-[rgba(124,58,237,0.82)] border-[rgba(168,85,247,0.6)] hover:bg-[rgba(124,58,237,0.9)] hover:border-[rgba(168,85,247,0.75)] dark:bg-[rgba(88,28,135,0.88)] dark:border-[rgba(192,132,252,0.6)] dark:hover:bg-[rgba(88,28,135,0.95)] dark:hover:border-[rgba(192,132,252,0.75)] hidden">قراءة أقل</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="perspective-1000" data-article>
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 sm:p-7 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-right" dir="rtl">
+                      <h3 class="text-gray-900/90 dark:text-white/90 text-lg sm:text-xl font-extrabold mb-3">تغذية التوأم: وجبات سريعة ومتوازنة</h3>
+                      <p class="text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg line-clamp-3 excerpt">
+                        مع التوأم، الوقت محدود والطاقة تُستهلك سريعًا. هذه الخطة تضمن وجبات سهلة التحضير وغنية بالعناصر الأساسية، مع تجهيز أسبوعي بسيط يوفّر عليك الحيرة ويقلّل الفوضى في المطبخ.
+                      </p>
+                      <p class="text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg mt-3 hidden full">
+                        جهّزي بروتينًا لثلاثة أيام (دجاج مسلوق أو لحم بطيء)، وخضارًا مغسولة ومقطعة، وكربوهيدرات معقولة مثل الشوفان أو الأرز البني بكميات مضبوطة. اعتمدي أطباق وعاء واحد: بروتين + خضار + نشويات في 15 دقيقة. سناكس للأم للحفاظ على الطاقة: مكسرات، زبادي، فاكهة، مع شرب الماء والنوم بقدر المستطاع.
+                      </p>
+                      <div class="mt-4 flex gap-3">
+                        <button class="read-more px-4 py-2 rounded-xl font-semibold text-white transition-colors glassmorphism dark:glassmorphism-dark border backdrop-blur-xl bg-[rgba(124,58,237,0.82)] border-[rgba(168,85,247,0.6)] hover:bg-[rgba(124,58,237,0.9)] hover:border-[rgba(168,85,247,0.75)] dark:bg-[rgba(88,28,135,0.88)] dark:border-[rgba(192,132,252,0.6)] dark:hover:bg-[rgba(88,28,135,0.95)] dark:hover:border-[rgba(192,132,252,0.75)]">قراءة المزيد</button>
+                        <button class="read-less px-4 py-2 rounded-xl font-semibold text-white transition-colors glassmorphism dark:glassmorphism-dark border backdrop-blur-xl bg-[rgba(124,58,237,0.82)] border-[rgba(168,85,247,0.6)] hover:bg-[rgba(124,58,237,0.9)] hover:border-[rgba(168,85,247,0.75)] dark:bg-[rgba(88,28,135,0.88)] dark:border-[rgba(192,132,252,0.6)] dark:hover:bg-[rgba(88,28,135,0.95)] dark:hover:border-[rgba(192,132,252,0.75)] hidden">قراءة أقل</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="perspective-1000" data-article>
+                  <div class="group card-3d glassmorphism dark:glassmorphism-dark border border-white/30 dark:border-white/20 rounded-2xl p-6 sm:p-7 backdrop-blur-xl shadow-md transform-gpu transition-transform duration-500 ease-out hover:scale-[1.04] transition-colors hover:bg-white/20 hover:border-white/40 dark:hover:bg-black/30 dark:hover:border-white/30">
+                    <div class="text-right" dir="rtl">
+                      <h3 class="text-gray-900/90 dark:text-white/90 text-lg sm:text-xl font-extrabold mb-3">نوم الطفلين: خطة تهدئة ومسارات ثابتة</h3>
+                      <p class="text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg line-clamp-3 excerpt">
+                        النوم المتزامن للتوأم هو مفتاح هدوء البيت. اتبعي روتينًا قصيرًا قبل النوم مع إشارات ثابتة للتهدئة، لتقليل الاستيقاظ المتكرر وبناء عادة نوم مريحة للطرفين.
+                      </p>
+                      <p class="text-gray-900/90 dark:text-white/90 leading-8 sm:leading-9 text-base sm:text-lg mt-3 hidden full">
+                        ثبّتي روتينًا قصيرًا: إضاءة خافتة، حمام دافئ، تهويدة، ثم رضاعة بوقت محدد. ضعي الطفلين في السرير وهما نعسان لا نائمين تمامًا لربط السرير بالنوم. استخدمي ضوضاء بيضاء، ودرجة 20–22°، وراقبي فواصل القيلولات. مع الاتساق ستقل الاستيقاظات تدريجيًا.
+                      </p>
+                      <div class="mt-4 flex gap-3">
+                        <button class="read-more px-4 py-2 rounded-xl font-semibold text-white transition-colors glassmorphism dark:glassmorphism-dark border backdrop-blur-xl bg-[rgba(124,58,237,0.82)] border-[rgba(168,85,247,0.6)] hover:bg-[rgba(124,58,237,0.9)] hover:border-[rgba(168,85,247,0.75)] dark:bg-[rgba(88,28,135,0.88)] dark:border-[rgba(192,132,252,0.6)] dark:hover:bg-[rgba(88,28,135,0.95)] dark:hover;border-[rgba(192,132,252,0.75)]">قراءة المزيد</button>
+                        <button class="read-less px-4 py-2 rounded-xl font-semibold text-white transition-colors glassmorphism dark:glassmorphism-dark border backdrop-blur-xl bg-[rgba(124,58,237,0.82)] border-[rgba(168,85,247,0.6)] hover:bg-[rgba(124,58,237,0.9)] hover:border-[rgba(168,85,247,0.75)] dark:bg-[rgba(88,28,135,0.88)] dark:border-[rgba(192,132,252,0.6)] dark:hover:bg-[rgba(88,28,135,0.95)] dark:hover;border-[rgba(192,132,252,0.75)] hidden">قراءة أقل</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const root = document.documentElement;
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const b1 = document.getElementById('b1');
+    const b2 = document.getElementById('b2');
+    const b3 = document.getElementById('b3');
+    const darkToggle = document.getElementById('darkToggle');
+    const darkToggleSm = document.getElementById('darkToggleSm');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const sunIconSm = document.getElementById('sunIconSm');
+    const moonIconSm = document.getElementById('moonIconSm');
+
+    function setDark(on){
+      if(on){
+        root.classList.add('dark');
+        sunIcon?.classList.remove('hidden');
+        moonIcon?.classList.add('hidden');
+        sunIconSm?.classList.remove('hidden');
+        moonIconSm?.classList.add('hidden');
+      }else{
+        root.classList.remove('dark');
+        sunIcon?.classList.add('hidden');
+        moonIcon?.classList.remove('hidden');
+        sunIconSm?.classList.add('hidden');
+        moonIconSm?.classList.remove('hidden');
+      }
+      localStorage.setItem('dark', on ? '1' : '0');
+    }
+    // init
+    setDark(localStorage.getItem('dark')==='1');
+
+    darkToggle?.addEventListener('click', ()=> setDark(!root.classList.contains('dark')));
+    darkToggleSm?.addEventListener('click', ()=> setDark(!root.classList.contains('dark')));
+
+    burger?.addEventListener('click', ()=>{
+      const isClosed = mobileMenu.classList.contains('max-h-0');
+      if(isClosed){
+        mobileMenu.classList.remove('max-h-0','opacity-0');
+        mobileMenu.classList.add('max-h-[600px]','opacity-100');
+        b1.classList.remove('-translate-y-1'); b1.classList.add('rotate-45','translate-y-1');
+        b2.classList.add('opacity-0');
+        b3.classList.remove('translate-y-1'); b3.classList.add('-rotate-45','-translate-y-1');
+        burger.setAttribute('aria-expanded','true');
+      }else{
+        mobileMenu.classList.add('max-h-0','opacity-0');
+        mobileMenu.classList.remove('max-h-[600px]','opacity-100');
+        b1.classList.add('-translate-y-1'); b1.classList.remove('rotate-45','translate-y-1');
+        b2.classList.remove('opacity-0');
+        b3.classList.add('translate-y-1'); b3.classList.remove('-rotate-45','-translate-y-1');
+        burger.setAttribute('aria-expanded','false');
+      }
+    });
+
+    // Articles expand/collapse
+    document.querySelectorAll('[data-article]').forEach(card=>{
+      const excerpt = card.querySelector('.excerpt');
+      const full = card.querySelector('.full');
+      const more = card.querySelector('.read-more');
+      const less = card.querySelector('.read-less');
+      if(more && less && excerpt && full){
+        more.addEventListener('click', ()=>{
+          excerpt.classList.add('hidden');
+          full.classList.remove('hidden');
+          more.classList.add('hidden');
+          less.classList.remove('hidden');
+        });
+        less.addEventListener('click', ()=>{
+          full.classList.add('hidden');
+          excerpt.classList.remove('hidden');
+          less.classList.add('hidden');
+          more.classList.remove('hidden');
+        });
+      }
+    });
+  </script>
+  <footer id="contact-us" class="mt-16 sm:mt-20 bg-gradient-to-b from-slate-900 to-black text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-10">
+      <div class="w-full text-center mb-4 sm:mb-6 select-none">
+        <span class="signature inline-block text-4xl sm:5xl italic rotate-[-2deg] tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-amber-200 to-yellow-400 drop-shadow-[0_1px_8px_rgba(234,179,8,0.28)]">ASMAA</span>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
+        <div class="shrink-0 glassmorphism dark:glassmorphism-dark border border-white/20 rounded-full px-5 py-2 backdrop-blur-sm">
+          <span class="text-2xl font-extrabold">ارتقي</span>
+        </div>
+        <nav aria-label="Footer navigation" class="w-full md:w-auto">
+          <ul class="glassmorphism dark:glassmorphism-dark border border-white/20 rounded-full px-2.5 sm:px-3 py-2 flex flex-wrap justify-center items-center gap-1.5 sm:gap-2">
+            <li><a href="#home" class="px-3 py-1.5 rounded-full text-sm font-semibold hover:bg-white/10 transition">الرئيسية</a></li>
+            <li><a href="#courses" class="px-3 py-1.5 rounded-full text-sm font-semibold hover:bg-white/10 transition">تقدري تتعلمي معانا</a></li>
+            <li><a href="#testimonials" class="px-3 py-1.5 rounded-full text-sm font-semibold hover:bg-white/10 transition">آراء الأمهات</a></li>
+            <li><a href="#ebooks" class="px-3 py-1.5 rounded-full text-sm font-semibold hover:bg-white/10 transition">الكتب الإلكترونية</a></li>
+            <li><a href="#articles" class="px-3 py-1.5 rounded-full text-sm font-semibold hover:bg-white/10 transition">مقالات</a></li>
+            <li><a href="#contact-us" class="px-3 py-1.5 rounded-full text-sm font-semibold hover:bg-white/10 transition">تواصل معنا</a></li>
+          </ul>
+
+
+
+
+
+<div class="shrink-0 glassmorphism dark:glassmorphism-dark border border-white/20 rounded-full px-5 py-2 backdrop-blur-sm">
+  <a href="https://wa.me/201010577605" target="_blank" class="flex items-center gap-2 hover:text-emerald-400 transition-colors">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+    <span class="text-sm font-semibold">01010577605</span>
+  </a>
+</div>
+
+
+
+
+
+
+        </nav>
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <a href="#" class="size-8 sm:size-9 grid place-items-center rounded-full glassmorphism dark:glassmorphism-dark border border-white/20 hover:bg-white/10 transition" aria-label="Twitter">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.2 1.7-2.1-.7.4-1.6.8-2.5 1-1.4-1.5-3.7-1.6-5.2-.2-1 .9-1.4 2.2-1.1 3.5-3-.1-5.9-1.6-7.8-4-.9 1.5-.4 3.5 1.1 4.5-.6 0-1.2-.2-1.8-.5 0 1.7 1.2 3.2 2.9 3.6-.5.1-1 .2-1.5.1.4 1.4 1.8 2.4 3.3 2.5-1.3 1-3 1.5-4.6 1.3 1.7 1.1 3.7 1.7 5.7 1.7 6.9 0 10.8-5.8 10.6-10.9.7-.5 1.4-1.2 1.9-2z"/></svg>
+          </a>
+          <a href="#" class="size-8 sm:size-9 grid place-items-center rounded-full glassmorphism dark:glassmorphism-dark border border-white/20 hover:bg-white/10 transition" aria-label="GitHub">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.6c0 5.3 3.4 9.7 8.1 11.3.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.5-1.4-1.9-1.4-1.9-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.5-1.4.9-1.7-2.6-.3-5.4-1.3-5.4-6 0-1.3.5-2.5 1.3-3.4-.1-.3-.6-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.7 11.7 0 0 1 6.2 0c2.4-1.6 3.4-1.3 3.4-1.3.7 1.7.2 3 .1 3.3.8.9 1.3 2.1 1.3 3.4 0 4.7-2.8 5.7-5.4 6 .5.4 1 1.2 1 2.4v3.5c0 .3.2.8.9.6 4.7-1.6 8.1-6 8.1-11.3A11.5 11.5 0 0 0 12 .5z"/></svg>
+          </a>
+          <a href="#" class="size-8 sm:size-9 grid place-items-center rounded-full glassmorphism dark:glassmorphism-dark border border-white/20 hover:bg-white/10 transition" aria-label="LinkedIn">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V24h-4V8.5zM8.5 8.5h3.8v2.1h.1c.5-1 1.8-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6V24h-4v-7.1c0-1.7 0-3.8-2.3-3.8s-2.6 1.8-2.6 3.7V24h-4V8.5z"/></svg>
+          </a>
+          <a href="#contact-us" class="size-8 sm:size-9 grid place-items-center rounded-full glassmorphism dark:glassmorphism-dark border border-white/20 hover:bg-white/10 transition" aria-label="Email">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="mt-5 sm:mt-6 text-center text-[10px] sm:text-xs text-white/60">© <span id="year"></span> ارتقي. All rights reserved.</div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
